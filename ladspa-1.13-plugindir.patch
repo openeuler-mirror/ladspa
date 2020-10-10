@@ -1,0 +1,40 @@
+From 1e46e694e393807d453f77dfe2c67fe0cba56398 Mon Sep 17 00:00:00 2001
+Date: Fri, 9 Oct 2020 15:16:41 +0800
+
+---
+ src/load.c   | 2 ++
+ src/search.c | 5 +----
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/load.c b/src/load.c
+index c2a5aa7..e221c10 100644
+--- a/src/load.c
++++ b/src/load.c
+@@ -54,6 +54,8 @@ dlopenLADSPA(const char * pcFilename, int iFlag) {
+        to search. */
+ 
+     pcLADSPAPath = getenv("LADSPA_PATH");
++    if (! pcLADSPAPath)
++      pcLADSPAPath = PLUGINDIR;
+     
+     if (pcLADSPAPath) {
+ 
+diff --git a/src/search.c b/src/search.c
+index 0006712..a6b2e78 100644
+--- a/src/search.c
++++ b/src/search.c
+@@ -99,10 +99,7 @@ LADSPAPluginSearch(LADSPAPluginSearchCallbackFunction fCallbackFunction) {
+ 
+   pcLADSPAPath = getenv("LADSPA_PATH");
+   if (!pcLADSPAPath) {
+-    fprintf(stderr,
+-	    "Warning: You do not have a LADSPA_PATH "
+-	    "environment variable set.\n");
+-    return;
++    pcLADSPAPath = PLUGINDIR;
+   }
+   
+   pcStart = pcLADSPAPath;
+-- 
+2.23.0
+
