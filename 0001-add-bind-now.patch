@@ -1,0 +1,25 @@
+From ac29de0c50b8c37b268e11be17adbfdd29b6f426 Mon Sep 17 00:00:00 2001
+From: zhangtao2020 <18066722603@163.com>
+Date: Sat, 20 Mar 2021 11:13:20 +0800
+Subject: [PATCH] add bind now
+
+---
+ src/makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/makefile b/src/makefile
+index 886237f..4b2ab1e 100644
+--- a/src/makefile
++++ b/src/makefile
+@@ -15,7 +15,7 @@ INSTALL_BINARY_DIR	=	/usr/bin/
+ 
+ INCLUDES	=	-I.
+ LIBRARIES	=	-ldl -lm
+-CFLAGS		=	$(INCLUDES) -Wall -Werror -O3 -fPIC
++CFLAGS		=	$(INCLUDES) -Wl,-z,now -Wall -Werror -O3 -fPIC
+ CXXFLAGS	=	$(CFLAGS)
+ PLUGINS		=	../plugins/amp.so				\
+ 			../plugins/delay.so				\
+-- 
+2.30.0
+

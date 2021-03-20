@@ -1,13 +1,14 @@
 Name:           ladspa
 Version:        1.13
-Release:        22
+Release:        23
 Summary:        Linux Audio Developer's Simple Plugin API (LADSPA)
 License:        LGPLv2+
 URL:            http://www.ladspa.org/
 Source:         http://www.ladspa.org/download/%{name}_sdk_%{version}.tgz
-Patch0001:      ladspa-1.13-plugindir.patch
 BuildRequires:  perl-interpreter gcc-c++
 
+Patch0001:      ladspa-1.13-plugindir.patch
+Patch0002:      0001-add-bind-now.patch
 %description
 LADSPA is a standard that allows software audio processors and effects to
 be plugged into a wide range of audio synthesis and recording packages.
@@ -50,5 +51,8 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/ladspa/rdf
 
 
 %changelog
+* Sat Mar 20 2021 zhangtao <zhangtao221@huawei.com> - 1.13-23
+- add bind now
+
 * Fri Nov 8 2019 Yiru Wang <wangyiru1@huawei.com> - 1.13-22
 - Pakcage init
