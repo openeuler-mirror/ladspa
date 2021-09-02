@@ -1,0 +1,25 @@
+From dcc6439b854a0e1728c1f0a8dc451c53621c61e6 Mon Sep 17 00:00:00 2001
+From: sunguoshuai <sunguoshuai@huawei.com>
+Date: Wed, 1 Sep 2021 17:01:28 +0800
+Subject: [PATCH] fix missing bind_now
+
+---
+ src/makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/makefile b/src/makefile
+index 886237f..c2715df 100644
+--- a/src/makefile
++++ b/src/makefile
+@@ -15,7 +15,7 @@ INSTALL_BINARY_DIR	=	/usr/bin/
+ 
+ INCLUDES	=	-I.
+ LIBRARIES	=	-ldl -lm
+-CFLAGS		=	$(INCLUDES) -Wall -Werror -O3 -fPIC
++CFLAGS		=	$(INCLUDES) -Wall -Werror -O3 -fPIC -Wl,-z,now
+ CXXFLAGS	=	$(CFLAGS)
+ PLUGINS		=	../plugins/amp.so				\
+ 			../plugins/delay.so				\
+-- 
+2.30.0
+
