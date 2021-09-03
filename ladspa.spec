@@ -1,6 +1,6 @@
 Name:           ladspa
 Version:        1.13
-Release:        22
+Release:        23
 Summary:        Linux Audio Developer's Simple Plugin API (LADSPA)
 License:        LGPLv2+
 URL:            http://www.ladspa.org/
@@ -50,5 +50,8 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/ladspa/rdf
 
 
 %changelog
+* Fri Sep 03 2021 wangyue<wangyue92@huawei.com> - 1.13-23
+- release number add 1
+
 * Fri Nov 8 2019 Yiru Wang <wangyiru1@huawei.com> - 1.13-22
 - Pakcage init
