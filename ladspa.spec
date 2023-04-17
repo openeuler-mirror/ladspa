@@ -1,12 +1,13 @@
 Name:           ladspa
 Version:        1.13
-Release:        23
+Release:        24
 Summary:        Linux Audio Developer's Simple Plugin API (LADSPA)
 License:        LGPLv2.1-only
 URL:            http://www.ladspa.org/
 Source:         http://www.ladspa.org/download/%{name}_sdk_%{version}.tgz
 Patch0001:      ladspa-1.13-plugindir.patch
 Patch0002:      0001-fix-missing-bind_now.patch
+Patch0003:      fix-cc.patch
 BuildRequires:  perl-interpreter gcc-c++
 
 %description
@@ -24,6 +25,8 @@ Thie package contains develop files and ladspa.h header file.
 %autosetup -n ladspa_sdk -p1
 perl -pi -e 's/^(CFLAGS.*)-O3(.*)/$1\$\(RPM_OPT_FLAGS\)$2 -DPLUGINDIR=\$\(PLUGINDIR\)/' src/makefile
 perl -pi -e 's/-mkdirhier/-mkdir -p/' src/makefile
+perl -pi -e 's/^(\s*CFLAGS\s*=\s*)(.*)(-Wl,-z,now)(.*)/$1$2$4/' src/makefile
+perl -pi -e 's/^(\s*LDFLAGS\s*=\s*)/$1-Wl,-z,now /' src/makefile
 cd doc|perl -pi -e "s!HREF=\"ladspa.h.txt\"!href=\"file:///usr/include/ladspa.h\"!" *.html
 
 %build
@@ -51,6 +54,9 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/ladspa/rdf
 
 
 %changelog
+* Mon Apr 17 2023 yoo <hlefthleft@gmail.com> - 1.13-24
+- Fix CC compiler support
+
 * Wed Sep  1 2021 Zhengtang Gong <gongzhengtang@huawei.com> - 1.13-23
 - add bind now
 
